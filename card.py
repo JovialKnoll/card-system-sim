@@ -7,6 +7,7 @@ class Color(Enum):
 
 
 class Suit(Enum):
+    __order__ = 'SPADES HEARTS CLUBS DIAMONDS'
     SPADES = 1
     HEARTS = 2
     CLUBS = 3
@@ -34,8 +35,20 @@ class Card(object):
         else:
             self.value = self.rank
 
-    @classMethod
+    @classmethod
     def from_joker(cls, color: Color):
         card = cls(None, 0)
         card.color = color
         return card
+
+
+DECK = []
+for suit in Suit:
+    card = Card(suit, rank = Rank.ACE)
+    DECK.append(card)
+    for i in range(2, 11):
+        card = Card(suit, rank = i)
+        DECK.append(card)
+    for r in (Rank.JACK, Rank.QUEEN, Rank.KING):
+        card = Card(suit, rank = r)
+        DECK.append(card)

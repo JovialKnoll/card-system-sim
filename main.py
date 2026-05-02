@@ -2,14 +2,12 @@
 
 import sys
 
-
-ALL_CARDS = []
-
-
+import card
 
 
 def main():
-    pass
+    for c in card.DECK:
+        print(c)
 
 
 if __name__ == '__main__':
