@@ -2,6 +2,7 @@ from enum import Enum, IntEnum
 
 
 class Color(Enum):
+    __order__ = 'BLACK RED'
     BLACK = 1
     RED = 2
 
@@ -80,3 +81,6 @@ for suit in Suit:
     for r in (Rank.JACK, Rank.QUEEN, Rank.KING):
         card = Card(suit, rank = r)
         DECK.append(card)
+for color in Color:
+    card = Card.from_joker(color)
+    DECK.append(card)
