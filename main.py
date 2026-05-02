@@ -6,8 +6,9 @@ import card
 
 
 def main():
+    print(len(card.DECK))
     for c in card.DECK:
-        print(c)
+        print(c.get_display())
 
 
 if __name__ == '__main__':

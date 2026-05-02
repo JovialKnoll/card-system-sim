@@ -35,6 +35,34 @@ class Card(object):
         else:
             self.value = self.rank
 
+    def get_display(self):
+        display = ""
+        if isinstance(self.rank, Rank):
+            match self.rank:
+                case Rank.ACE:
+                    display = "A"
+                case Rank.JACK:
+                    display = "J"
+                case Rank.QUEEN:
+                    display = "Q"
+                case Rank.KING:
+                    display = "K"
+        else:
+            display = str(self.value)
+        if self.suit is None:
+            display += "B" if self.color == Color.BLACK else "R"
+        else:
+            match self.suit:
+                case Suit.SPADES:
+                    display += "S"
+                case Suit.HEARTS:
+                    display += "H"
+                case Suit.CLUBS:
+                    display += "C"
+                case Suit.DIAMONDS:
+                    display += "D"
+        return display
+
     @classmethod
     def from_joker(cls, color: Color):
         card = cls(None, 0)
