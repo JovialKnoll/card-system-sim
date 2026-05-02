@@ -3,6 +3,11 @@
 import sys
 
 
+ALL_CARDS = []
+
+
+
+
 def main():
     pass
 
