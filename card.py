@@ -35,6 +35,9 @@ class Card(object):
                 self.value = 11
         else:
             self.value = self.rank
+        self.wins = 0
+        self.draws = 0
+        self.losses = 0
 
     def get_display(self):
         display = ""
@@ -62,6 +65,7 @@ class Card(object):
                     display += "C"
                 case Suit.DIAMONDS:
                     display += "D"
+        display += f": {self.wins}, {self.draws}, {self.losses}"
         return display
 
     @classmethod
@@ -69,6 +73,38 @@ class Card(object):
         card = cls(None, 0)
         card.color = color
         return card
+
+    def get_outcome(self, other: Card):
+        if self.suit == other.suit:
+            if self.value > other.value:
+                return 1
+            elif self.value < other.value:
+                return -1
+        elif self.color == other.color:
+            if self.value < other.value:
+                return 1
+            elif self.value > other.value:
+                return -1
+        elif self.suit is None:
+            return -1
+        elif other.suit is None:
+            return 1
+        elif (self.suit.value + 1) % 4 == other.suit.value:
+            return 1
+        elif (self.suit.value - 1) % 4 == other.suit.value:
+            return -1
+        return 0
+
+    def record_outcome(self, other: Card):
+        if self.suit == other.suit and self.color == other.color and self.rank == other.rank:
+            return
+        outcome = self.get_outcome(other)
+        if outcome == 1:
+            self.wins += 1
+        elif outcome == -1:
+            self.losses += 1
+        else:
+            self.draws += 1
 
 
 DECK = []
