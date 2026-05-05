@@ -6,8 +6,9 @@ import card
 
 
 def main():
-    print(len(card.DECK))
     for c in card.DECK:
+        for o in card.DECK:
+            c.record_outcome(o)
         print(c.get_display())
 
 
