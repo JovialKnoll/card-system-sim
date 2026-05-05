@@ -9,10 +9,10 @@ class Color(Enum):
 
 class Suit(Enum):
     __order__ = 'SPADES HEARTS CLUBS DIAMONDS'
-    SPADES = 1
-    HEARTS = 2
-    CLUBS = 3
-    DIAMONDS = 4
+    SPADES = 0
+    HEARTS = 1
+    CLUBS = 2
+    DIAMONDS = 3
 
 
 class Rank(Enum):
