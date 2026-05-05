@@ -76,24 +76,31 @@ class Card(object):
         return card
 
     def get_outcome(self, other: Card):
+        # for matching suit, high value wins
         if self.suit == other.suit:
             if self.value > other.value:
                 return 1
             elif self.value < other.value:
                 return -1
+        # if different suit, but matching color, low value wins
+        # (jokers have value 0, win against all of same color)
         elif self.color == other.color:
             if self.value < other.value:
                 return 1
             elif self.value > other.value:
                 return -1
+        # if different suit, and different color, and one card has no suit (joker), that card loses
         elif self.suit is None:
             return -1
         elif other.suit is None:
             return 1
+        # if different suit, and different color, winner is determined by suit order
+        # (Spades beats Hearts beats Clubs beats Diamonds)
         elif (self.suit.value + 1) % 4 == other.suit.value:
             return 1
         elif (self.suit.value - 1) % 4 == other.suit.value:
             return -1
+        # if none of the above, this is a tie, no damage
         return 0
 
     def record_outcome(self, other: Card):
