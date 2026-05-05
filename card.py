@@ -38,6 +38,7 @@ class Card(object):
         self.wins = 0
         self.draws = 0
         self.losses = 0
+        self.total = 0
 
     def get_display(self):
         display = ""
@@ -105,6 +106,7 @@ class Card(object):
             self.losses += 1
         else:
             self.draws += 1
+        self.total += 1
 
 
 DECK = []
